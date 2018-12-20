@@ -7,8 +7,8 @@ This module lets you practice:
 
 Authors: David Mutchler, Vibha Alangar, Matt Boutell, Dave Fisher,
          Mark Hays, Amanda Stouder, Aaron Wilkin, their colleagues,
-         and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         and Hanrui Chen.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import rosegraphics as rg
 import math
@@ -31,8 +31,8 @@ def main():
     # -------------------------------------------------------------------------
 
     run_test_generate_points_on_circle()
-    # run_test_draw_points_on_circle()
-    # run_test_pizza()
+    run_test_draw_points_on_circle()
+    run_test_pizza()
     # run_test_polygon()
     # run_test_fancy_polygon()
 
@@ -56,9 +56,9 @@ def run_test_generate_points_on_circle():
 
     # Test 1:
     expected = [rg.Point(125.0, 50.0),  # All numbers are approximate.
-                rg.Point(112.5, 71.7),
+                rg.Point(112.5, 71.1),
                 rg.Point(87.5, 71.7),
-                rg.Point(75.0, 50.0),
+                rg.Point(75, 50),
                 rg.Point(87.5, 28.3),
                 rg.Point(112.5, 28.3)]
     circle = rg.Circle(rg.Point(100, 50), 25)
@@ -70,7 +70,15 @@ def run_test_generate_points_on_circle():
     # -------------------------------------------------------------------------
     # Test 2:  (YOU write THIS test)
     # -------------------------------------------------------------------------
+    expected = [rg.Point(100.0, 350.0),  # All numbers are approximate.
+                rg.Point(150, 300),
+                rg.Point(100, 350),
+                rg.Point(50, 300),]
+    circle = rg.Circle(rg.Point(100, 300), 50)
+    answer = generate_points_on_circle(circle, 4)
 
+    print('Expected:', expected)
+    print('Actual:  ', answer)
 
 def generate_points_on_circle(circle_for_points, number_of_points_to_generate):
     """
@@ -226,6 +234,15 @@ def draw_points_on_circle(window, circle, number_of_points, color):
     # Your professor may do this exercise with you as "live coding".
     # -------------------------------------------------------------------------
 
+    circle.attach_to(window)
+    points = generate_points_on_circle(circle, number_of_points)
+    for k in range(len(points)):
+        center = points[k]
+        circle = rg.Circle(center, 10)
+        circle.fill_color = color
+        circle.attach_to(window)
+        center.attach_to(window)
+        window.render(0.05)
 
 def run_test_pizza():
     """ Tests the   pizza   function. """
@@ -274,7 +291,6 @@ def run_test_pizza():
     #     -- on a yellow-filled circle.
     # -------------------------------------------------------------------------
 
-
 def pizza(window, circle, number_of_slices, color, thickness):
     """
     What comes in:
@@ -313,6 +329,16 @@ def pizza(window, circle, number_of_slices, color, thickness):
     #    (defined above) to generate the relevant points,
     #    and then draw lines that are based in part on those points.
     # -------------------------------------------------------------------------
+
+    circle.attach_to(window)
+    points = generate_points_on_circle(circle, number_of_slices)
+    for k in range(len(points)):
+        end_points = points[k]
+        line = rg.Line(circle.center, end_points)
+        line.color = color
+        line.thickness = thickness
+        line.attach_to(window)
+        window.render(0.05)
 
 
 def run_test_polygon():
