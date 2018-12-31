@@ -30,10 +30,10 @@ def main():
     #        RE-commenting out the previous test to reduce the output.
     # -------------------------------------------------------------------------
 
-    # run_test_generate_points_on_circle()
-    # run_test_draw_points_on_circle()
-    # run_test_pizza()
-    # run_test_polygon()
+    run_test_generate_points_on_circle()
+    run_test_draw_points_on_circle()
+    run_test_pizza()
+    run_test_polygon()
     run_test_fancy_polygon()
 
 
@@ -560,7 +560,6 @@ def fancy_polygon(window, circle, number_of_lines, hops_to_next_point, color,
         start_point = points[k]
         end_point = points[(k + hops_to_next_point) % len(points)]
         line = rg.Line(start_point, end_point)
-        line.arrow
         line.color = color
         line.thickness = thickness
         line.attach_to(window)
