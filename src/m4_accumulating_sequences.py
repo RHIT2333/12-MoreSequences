@@ -413,6 +413,14 @@ def rectangles_from_circles(circles):
     ###########################################################################
     # -------------------------------------------------------------------------
 
+    rectangles = []
+    for k in range(len(circles)):
+        conner_1 = rg.Point(circles[k].center.x - circles[k].radius, circles[k].center.y - circles[k].radius)
+        conner_2 = rg.Point(circles[k].center.x + circles[k].radius, circles[k].center.y + circles[k].radius)
+        rectangle = rg.Rectangle(conner_1, conner_2)
+        rectangles.append(rectangle)
+    return rectangles
+
 
 # -----------------------------------------------------------------------------
 # Calls  main  to start the ball rolling.
